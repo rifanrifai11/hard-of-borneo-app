@@ -1,0 +1,413 @@
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="id.borneo.of.hard.hardofborneo.fragment.Profiles">
+
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_marginTop="16dp"
+                android:background="@drawable/border_background_white_hight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:padding="3dp"
+                    android:scaleType="centerCrop"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/profil"
+                    android:id="@+id/circleView" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Username User"
+                android:textColor="#FFF"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif"
+                android:layout_marginTop="16dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1000 POIN"
+                android:textColor="#FFF"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif"/>
+
+            <LinearLayout
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginRight="4dp"
+                    app:srcCompat="@drawable/bon_tropy"/>
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginRight="4dp"
+                    app:srcCompat="@drawable/bon_tropy"/>
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginRight="4dp"
+                    app:srcCompat="@drawable/bon_tropy"/>
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginRight="4dp"
+                    app:srcCompat="@drawable/bon_tropy"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    app:srcCompat="@drawable/ms_profile" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="14dp">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/txtname"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Nama Akun Saya"
+                            android:textColor="#1a1a1a"
+                            android:textSize="14sp"
+                            android:textStyle="bold"/>
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            app:srcCompat="@drawable/ms_arrow_down"
+                            android:layout_marginRight="8dp"/>
+
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/eNama"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@android:color/transparent"
+                        android:hint="Your Name"
+                        android:textSize="14sp"
+                        android:fontFamily="sans-serif"/>
+
+                    <View
+                        android:layout_below="@id/eNama"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="#1a1a1a"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="14dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    app:srcCompat="@drawable/ms_mail" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="14dp">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Email Aktif"
+                            android:textColor="#1a1a1a"
+                            android:textSize="14sp"
+                            android:textStyle="bold"/>
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            app:srcCompat="@drawable/ms_arrow_down"
+                            android:layout_marginRight="8dp"/>
+
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/eEmail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@android:color/transparent"
+                        android:hint="Email address"
+                        android:textSize="14sp"
+                        android:fontFamily="sans-serif"/>
+
+                    <View
+                        android:layout_below="@id/eNama"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="#1a1a1a"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="14dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    app:srcCompat="@drawable/ms_phone" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="14dp">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Nomor Telephone"
+                            android:textColor="#1a1a1a"
+                            android:textSize="14sp"
+                            android:textStyle="bold"/>
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            app:srcCompat="@drawable/ms_arrow_down"
+                            android:layout_marginRight="8dp"/>
+
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/eKontak"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@android:color/transparent"
+                        android:hint="Phone Number"
+                        android:textSize="14sp"
+                        android:fontFamily="sans-serif"/>
+
+                    <View
+                        android:layout_below="@id/eNama"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="#1a1a1a"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="14dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    app:srcCompat="@drawable/ms_maps" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="14dp">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Alamat Tempat Tinggal"
+                            android:textColor="#1a1a1a"
+                            android:textSize="14sp"
+                            android:textStyle="bold"/>
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            app:srcCompat="@drawable/ms_arrow_down"
+                            android:layout_marginRight="8dp"/>
+
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/eKontak"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@android:color/transparent"
+                        android:hint="Address"
+                        android:textSize="14sp"
+                        android:fontFamily="sans-serif"/>
+
+                    <View
+                        android:layout_below="@id/eNama"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="#1a1a1a"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="14dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    app:srcCompat="@drawable/ms_birthdat" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="14dp">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Tanggal Lahir"
+                            android:textColor="#1a1a1a"
+                            android:textSize="14sp"
+                            android:textStyle="bold"/>
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            app:srcCompat="@drawable/ms_arrow_down"
+                            android:layout_marginRight="8dp"/>
+
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/eBirthday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@android:color/transparent"
+                        android:hint="Birthday"
+                        android:textSize="14sp"
+                        android:fontFamily="sans-serif"/>
+
+                    <View
+                        android:layout_below="@id/eNama"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="#1a1a1a"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

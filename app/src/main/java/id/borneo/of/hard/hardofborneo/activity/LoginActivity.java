@@ -98,7 +98,9 @@ public class LoginActivity extends AppCompatActivity {
 //                } else {
 //                    Toast.makeText(getApplicationContext(),"Email & Password Empty", Toast.LENGTH_SHORT).show();
 //                }
-                sessionLogin();
+                Intent intent = new Intent(LoginActivity.this, Dashboard.class);
+                startActivity(intent);
+                //sessionLogin();
             }
         });
 
@@ -114,7 +116,7 @@ public class LoginActivity extends AppCompatActivity {
 
         //If we will get true
         if(loggedIn){
-            //We will start the Profile Activity
+            //We will start the Profiles Activity
             Intent intent = new Intent(LoginActivity.this, Dashboard.class);
             startActivity(intent);
         }

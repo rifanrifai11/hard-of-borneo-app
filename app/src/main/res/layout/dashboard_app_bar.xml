@@ -16,7 +16,17 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            app:popupTheme="@style/AppTheme.PopupOverlay" >
+
+            <TextView
+                android:gravity="center|left"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Hard Of Borneo"
+                android:textSize="18sp"
+                android:textColor="#FFF"/>
+
+        </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
 

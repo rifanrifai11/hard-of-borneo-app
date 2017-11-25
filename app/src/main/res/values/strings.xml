@@ -10,4 +10,7 @@
         pada gelaran PlayStation Experience (PSX) 2017 di Anaheim, California, AS.Seperti diketahui, Capcom memang akan tampil di panggung PSX 2017.
     </string>
     <string name="desc">Ditutup dengan keberhasilan Rex Regum Qeon menjadi juara turnamen eSports KASKUS Battleground, event ini mencoba merangkul para gamers, pecinta komik, hingga kolektor figur dan mainan.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
