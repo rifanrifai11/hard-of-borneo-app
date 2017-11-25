@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_bagroud_mix_color"
+    tools:context="id.borneo.of.hard.hardofborneo.activity.SplashIntro">
+
+
+    <ImageView
+        android:elevation="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/icon2"
+        android:layout_margin="100dp"/>
+
+
+</android.support.design.widget.CoordinatorLayout>

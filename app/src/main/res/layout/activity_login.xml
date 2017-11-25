@@ -1,0 +1,140 @@
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:background="@drawable/img_bagroud_mix_color"
+    tools:context="id.borneo.of.hard.hardofborneo.activity.LoginActivity">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_margin="16dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_marginTop="30dp"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:src="@drawable/icon2"
+                android:scaleType="fitXY"/>
+
+            <LinearLayout
+                android:layout_marginTop="90dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:background="@drawable/border_background_white_transparant_very_low"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginRight="8dp"
+                        android:src="@drawable/bon_user"/>
+
+                    <AutoCompleteTextView
+                        android:id="@+id/email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Email Address"
+                        android:inputType="textEmailAddress"
+                        android:background="#00ffffff"
+                        android:textColor="#FFF"
+                        android:textColorHint="#FFF"
+                        android:textSize="16sp"
+                        android:fontFamily="sans-serif"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:background="@drawable/border_background_white_transparant_very_low"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:gravity="center"
+                    android:layout_marginTop="8dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginRight="8dp"
+                        android:src="@drawable/bon_key"/>
+
+                    <EditText
+                        android:id="@+id/password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Password"
+                        android:inputType="textPassword"
+                        android:background="#00ffffff"
+                        android:textColor="#FFF"
+                        android:textColorHint="#FFF"
+                        android:textSize="16sp"
+                        android:fontFamily="sans-serif" />
+
+                </LinearLayout>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="@drawable/button_background_blue_very_low"
+                    android:id="@+id/email_sign_in_button"
+                    android:text="Get Starter"
+                    android:fontFamily="sans-serif"
+                    android:textAllCaps="false"
+                    android:textColor="#FFF"
+                    android:layout_marginTop="16dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginBottom="40dp"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/btnRegister"
+                    android:clickable="true"
+                    android:gravity="left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Don't Have An Account ?"
+                    android:textColor="#1a1a1a"
+                    android:fontFamily="sans-serif"
+                    android:textSize="14sp"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/btnForgot"
+                    android:gravity="end"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Forgot Password"
+                    android:textColor="#1a1a1a"
+                    android:fontFamily="sans-serif"
+                    android:textSize="14sp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>
