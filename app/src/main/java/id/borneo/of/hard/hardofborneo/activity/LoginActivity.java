@@ -27,6 +27,7 @@ import java.util.Map;
 import id.borneo.of.hard.hardofborneo.R;
 import id.borneo.of.hard.hardofborneo.helper.SQLiteHandler;
 import id.borneo.of.hard.hardofborneo.helper.SessionManage;
+import id.borneo.of.hard.hardofborneo.session.Config;
 import id.borneo.of.hard.hardofborneo.session.Controller;
 
 /**
@@ -35,7 +36,7 @@ import id.borneo.of.hard.hardofborneo.session.Controller;
 public class LoginActivity extends AppCompatActivity {
 
     // UI references.
-    private AutoCompleteTextView mEmail;
+    private TextView mEmail;
     private EditText mPassword;
     private TextView btnRegister;
 
@@ -56,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void initAction() {
-        mEmail = (AutoCompleteTextView) findViewById(R.id.email);
+        mEmail = (TextView) findViewById(R.id.email);
         mPassword = (EditText) findViewById(R.id.password);
         btnRegister = (TextView) findViewById(R.id.btnRegister);
         mEmailSignIn = (Button) findViewById(R.id.email_sign_in_button);
@@ -102,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
         pDialog.setMessage("Logging in ...");
         showDialog();
 
-        StringRequest strReq = new StringRequest(Method.POST, getString(R.string.url_base) + "/login.php", new Response.Listener<String>() {
+        StringRequest strReq = new StringRequest(Method.POST, Config.URL_LOGIN, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
@@ -120,7 +121,7 @@ public class LoginActivity extends AppCompatActivity {
                         session.setLogin(true);
 
                         // Now store the user in SQLite
-                        String uid = jObj.getString("uid");
+                        //String uid = jObj.getString("uid");
 
                         JSONObject user = jObj.getJSONObject("user");
                         String name = user.getString("name");
@@ -129,7 +130,7 @@ public class LoginActivity extends AppCompatActivity {
                                 .getString("created_at");
 
                         // Inserting row in users table
-                        db.addUser(name, email, uid, created_at);
+                        db.addUser(name, email, created_at);
 
                         // Launch main activity
                         Intent intent = new Intent(LoginActivity.this,
