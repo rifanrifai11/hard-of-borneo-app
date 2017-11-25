@@ -1,22 +1,27 @@
 package id.borneo.of.hard.hardofborneo.activity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request.Method;
+//import com.android.volley.Request.Method;
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,7 +41,7 @@ import id.borneo.of.hard.hardofborneo.session.Controller;
 public class LoginActivity extends AppCompatActivity {
 
     // UI references.
-    private TextView mEmail;
+    private EditText mEmail;
     private EditText mPassword;
     private TextView btnRegister;
 
@@ -45,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
     private SessionManage session;
     private SQLiteHandler db;
     private Button mEmailSignIn;
+    private boolean loggedIn = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void initAction() {
-        mEmail = (TextView) findViewById(R.id.email);
+        mEmail = (EditText) findViewById(R.id.email);
         mPassword = (EditText) findViewById(R.id.password);
         btnRegister = (TextView) findViewById(R.id.btnRegister);
         mEmailSignIn = (Button) findViewById(R.id.email_sign_in_button);
@@ -70,116 +76,107 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        pDialog = new ProgressDialog(this);
-        pDialog.setCancelable(false);
-        db = new SQLiteHandler(getApplicationContext());
-        session = new SessionManage(getApplicationContext());
-
-        if (session.isLoggedIn()) {
-            Intent intent = new Intent(LoginActivity.this, Dashboard.class);
-            startActivity(intent);
-            finish();
-        }
+//        pDialog = new ProgressDialog(this);
+//        pDialog.setCancelable(false);
+//        db = new SQLiteHandler(getApplicationContext());
+//        session = new SessionManage(getApplicationContext());
+//
+//        if (session.isLoggedIn()) {
+//            Intent intent = new Intent(LoginActivity.this, Dashboard.class);
+//            startActivity(intent);
+//            finish();
+//        }
 
         mEmailSignIn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email = mEmail.getText().toString().trim();
-                String password = mPassword.getText().toString().trim();
-
-                if(!email.isEmpty() && !password.isEmpty() ) {
-                    checkLogin(email,password);
-                } else {
-                    Toast.makeText(getApplicationContext(),"Email & Password Empty", Toast.LENGTH_SHORT).show();
-                }
+//                String email = mEmail.getText().toString().trim();
+//                String password = mPassword.getText().toString().trim();
+//
+//                if(!email.isEmpty() && !password.isEmpty() ) {
+//                    checkLogin(email,password);
+//                } else {
+//                    Toast.makeText(getApplicationContext(),"Email & Password Empty", Toast.LENGTH_SHORT).show();
+//                }
+                sessionLogin();
             }
         });
 
     }
 
-    private void checkLogin(final String email, final String password) {
+    @Override
+    protected void onResume () {
+        super.onResume();
+        SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME,Context.MODE_PRIVATE);
 
-        String tag_string_req = "req_login";
-        pDialog.setMessage("Logging in ...");
-        showDialog();
+        //Fetching the boolean value form sharedpreferences
+        loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, false);
 
-        StringRequest strReq = new StringRequest(Method.POST, Config.URL_LOGIN, new Response.Listener<String>() {
+        //If we will get true
+        if(loggedIn){
+            //We will start the Profile Activity
+            Intent intent = new Intent(LoginActivity.this, Dashboard.class);
+            startActivity(intent);
+        }
+    }
 
-            @Override
-            public void onResponse(String response) {
-                Log.d(TAG, "Login Response: " + response.toString());
-                hideDialog();
+    private void sessionLogin() {
+        final String email = mEmail.getText().toString().trim();
+        final String password = mPassword.getText().toString().trim();
 
-                try {
-                    JSONObject jObj = new JSONObject(response);
-                    boolean error = jObj.getBoolean("error");
+        //Creating a string request
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Config.URL_LOGIN,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        //If we are getting success from server
+                        if(response.equalsIgnoreCase(Config.LOGIN_SUCCESS)){
+                            //Creating a shared preference
+                            SharedPreferences sharedPreferences = LoginActivity.this.getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
 
-                    // Check for error node in json
-                    if (!error) {
-                        // user successfully logged in
-                        // Create login session
-                        session.setLogin(true);
+                            //Creating editor to store values to shared preferences
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
 
-                        // Now store the user in SQLite
-                        //String uid = jObj.getString("uid");
+                            //Adding values to editor
+                            editor.putBoolean(Config.LOGGEDIN_SHARED_PREF, true);
+                            editor.putString(Config.EMAIL_SHARED_PREF, email);
 
-                        JSONObject user = jObj.getJSONObject("user");
-                        String name = user.getString("name");
-                        String email = user.getString("email");
-                        String created_at = user
-                                .getString("created_at");
+                            //Saving values to editor
+                            editor.commit();
 
-                        // Inserting row in users table
-                        db.addUser(name, email, created_at);
-
-                        // Launch main activity
-                        Intent intent = new Intent(LoginActivity.this,
-                                Dashboard.class);
-                        startActivity(intent);
-                        finish();
-                    } else {
-                        // Error in login. Get the error message
-                        String errorMsg = jObj.getString("error_msg");
-                        Toast.makeText(getApplicationContext(),
-                                errorMsg, Toast.LENGTH_LONG).show();
+                            //Starting profile activity
+                            Intent intent = new Intent(LoginActivity.this, Dashboard.class);
+                            startActivity(intent);
+                        }else{
+                            //If the server response is not success
+                            //Displaying an error message on toast
+                            Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_LONG).show();
+                        }
                     }
-                } catch (JSONException e) {
-                    // JSON error
-                    e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();
-                }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //You can handle error here if you want
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<>();
+                //Adding parameters to request
+                params.put(Config.KEY_EMAIL, email);
+                params.put(Config.KEY_PASSWORD,password);
 
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e(TAG, "Login Error: " + error.getMessage());
-                Toast.makeText(getApplicationContext(),
-                        error.getMessage(), Toast.LENGTH_LONG).show();
-                hideDialog();
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() {
-                // Posting parameters to login url
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("email", email);
-                params.put("password", password);
+                //returning parameter
                 return params;
             }
-
         };
-        Controller.getInstance().addToRequestQueue(strReq, tag_string_req);
+
+        //Adding the string request to the queue
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
     }
 
-    private void hideDialog() {
-        if (!pDialog.isShowing())
-            pDialog.show();
-    }
-
-    private void showDialog() {
-        if (!pDialog.isShowing())
-            pDialog.dismiss();
-    }
+//
 }
 

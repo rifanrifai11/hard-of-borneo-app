@@ -2,6 +2,7 @@ package id.borneo.of.hard.hardofborneo.session;
 
 import android.app.Application;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -29,6 +30,7 @@ public class Controller extends Application {
     }
 
     public RequestQueue getRequestQueue() {
+        Log.d(TAG,"request queue" + mRequestQueue);
         if (mRequestQueue == null) {
             mRequestQueue = Volley.newRequestQueue(getApplicationContext());
         }
@@ -37,6 +39,7 @@ public class Controller extends Application {
     }
 
     public <T> void addToRequestQueue(Request<T> req, String tag) {
+        Log.d(TAG,"request queue");
         req.setTag(TextUtils.isEmpty(tag) ? TAG : tag);
         getRequestQueue().add(req);
     }

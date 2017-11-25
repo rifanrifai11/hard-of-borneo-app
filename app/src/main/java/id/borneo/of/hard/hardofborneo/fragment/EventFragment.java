@@ -3,11 +3,19 @@ package id.borneo.of.hard.hardofborneo.fragment;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import id.borneo.of.hard.hardofborneo.R;
+import id.borneo.of.hard.hardofborneo.item.EventItem;
+import id.borneo.of.hard.hardofborneo.adapter.EventRecyclerAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,6 +26,7 @@ import id.borneo.of.hard.hardofborneo.R;
 public class EventFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
+    LinearLayout ln;
 
     public EventFragment() {
         // Required empty public constructor
@@ -35,7 +44,36 @@ public class EventFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_event, container, false);
+        View view = inflater.inflate(R.layout.fragment_event, container, false);
+        initialAction(view);
+        return view;
+
+    }
+
+    public void initialAction(View view)  {
+        List<EventItem> rowListItem = getAllItemList();
+        LinearLayoutManager layout = new LinearLayoutManager(getContext());
+
+        RecyclerView rView = view.findViewById(R.id.recycler_view);
+        rView.setHasFixedSize(true);
+        rView.setLayoutManager(layout);
+
+        EventRecyclerAdapter rcAdapter = new EventRecyclerAdapter(getContext(), rowListItem);
+        rView.setAdapter(rcAdapter);
+    }
+
+    private List<EventItem> getAllItemList(){
+
+        List<EventItem> allItems = new ArrayList<>();
+        allItems.add(new EventItem("Persiapan Ajang Event Dota",getString(R.string.desc), R.drawable.dummy_image));
+        allItems.add(new EventItem("Persiapan Ajang Event Dota",getString(R.string.desc), R.drawable.dummy_image));
+        allItems.add(new EventItem("Persiapan Ajang Event Dota",getString(R.string.desc), R.drawable.dummy_image));
+        allItems.add(new EventItem("Persiapan Ajang Event Dota",getString(R.string.desc), R.drawable.dummy_image));
+        allItems.add(new EventItem("Persiapan Ajang Event Dota",getString(R.string.desc), R.drawable.dummy_image));
+        allItems.add(new EventItem("Persiapan Ajang Event Dota",getString(R.string.desc), R.drawable.dummy_image));
+        allItems.add(new EventItem("Persiapan Ajang Event Dota",getString(R.string.desc), R.drawable.dummy_image));
+
+        return allItems;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

@@ -45,7 +45,7 @@
                         android:layout_marginRight="8dp"
                         android:src="@drawable/bon_user"/>
 
-                    <TextView
+                    <EditText
                         android:id="@+id/email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
