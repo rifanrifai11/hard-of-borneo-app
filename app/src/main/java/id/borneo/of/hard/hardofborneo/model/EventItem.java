@@ -1,4 +1,4 @@
-package id.borneo.of.hard.hardofborneo.item;
+package id.borneo.of.hard.hardofborneo.model;
 
 
 public class EventItem {

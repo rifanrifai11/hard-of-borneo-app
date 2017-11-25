@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import id.borneo.of.hard.hardofborneo.R;
-import id.borneo.of.hard.hardofborneo.item.EventItem;
+import id.borneo.of.hard.hardofborneo.model.EventItem;
 import id.borneo.of.hard.hardofborneo.adapter.EventRecyclerAdapter;
 
 /**

@@ -55,13 +55,13 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        btnProfile = (ImageView) findViewById(R.id.btnProfile);
+        btnProfile = navigationView.getHeaderView(0).findViewById(R.id.imageView);
 
         btnProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent2 = new Intent(Dashboard.this,Profile.class);
-                startActivity(intent2);
+                Intent intent = new Intent(Dashboard.this, Profile.class);
+                startActivity(intent);
             }
         });
         action();

@@ -11,12 +11,12 @@ import java.util.List;
 import id.borneo.of.hard.hardofborneo.R;
 import id.borneo.of.hard.hardofborneo.model.EventItem;
 
-public class EventRecyclerAdapter extends RecyclerView.Adapter<RecyclerViewHolders> {
+public class OnlineUserRecyclerAdapter extends RecyclerView.Adapter<RecyclerViewHolders> {
 
     private List<EventItem> itemList;
     private Context context;
 
-    public EventRecyclerAdapter(Context context, List<EventItem> itemList) {
+    public OnlineUserRecyclerAdapter(Context context, List<EventItem> itemList) {
         this.itemList = itemList;
         this.context = context;
     }
