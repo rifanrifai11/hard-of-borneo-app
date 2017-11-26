@@ -39,7 +39,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Username User"
+                android:text="Kusniadi Jaya Akbar"
                 android:textColor="#FFF"
                 android:textSize="16sp"
                 android:fontFamily="sans-serif"
@@ -48,7 +48,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1000 POIN"
+                android:text="5 POIN"
                 android:textColor="#FFF"
                 android:textSize="13sp"
                 android:textStyle="bold"
@@ -66,25 +66,15 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginRight="4dp"
-                    app:srcCompat="@drawable/bon_tropy"/>
+                    app:srcCompat="@drawable/bon_tropy"
+                    tools:ignore="VectorDrawableCompat" />
 
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginRight="4dp"
-                    app:srcCompat="@drawable/bon_tropy"/>
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginRight="4dp"
-                    app:srcCompat="@drawable/bon_tropy"/>
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginRight="4dp"
-                    app:srcCompat="@drawable/bon_tropy"/>
+                    app:srcCompat="@drawable/bon_tropy"
+                    tools:ignore="VectorDrawableCompat" />
 
             </LinearLayout>
 
@@ -145,6 +135,7 @@
                         android:layout_marginTop="4dp"
                         android:background="@android:color/transparent"
                         android:hint="Your Name"
+                        android:text="Kusniadi Jaya Akbar"
                         android:textSize="14sp"
                         android:fontFamily="sans-serif"/>
 
@@ -207,6 +198,7 @@
                         android:layout_marginTop="4dp"
                         android:background="@android:color/transparent"
                         android:hint="Email address"
+                        android:text="kudiadijayaakbar@gmail.com"
                         android:textSize="14sp"
                         android:fontFamily="sans-serif"/>
 
@@ -270,6 +262,7 @@
                         android:background="@android:color/transparent"
                         android:hint="Phone Number"
                         android:textSize="14sp"
+                        android:text="085393952736"
                         android:fontFamily="sans-serif"/>
 
                     <View
@@ -334,6 +327,7 @@
                         android:background="@android:color/transparent"
                         android:hint="Address"
                         android:textSize="14sp"
+                        android:text="jalan labaika no 15"
                         android:fontFamily="sans-serif"/>
 
                     <View
@@ -398,6 +392,7 @@
                         android:background="@android:color/transparent"
                         android:hint="Birthday"
                         android:textSize="14sp"
+                        android:text="12 Nopember 1995"
                         android:fontFamily="sans-serif"/>
 
                     <View
