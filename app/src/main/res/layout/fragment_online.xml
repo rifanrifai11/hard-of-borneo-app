@@ -1,15 +1,12 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
+    android:background="#fafafa"
+    android:padding="8dp"
     tools:context="id.borneo.of.hard.hardofborneo.fragment.OnlineFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Data not found !"
-        android:textSize="16dp"/>
+    <include layout="@layout/list_online"/>
 
-</FrameLayout>
+</LinearLayout>

@@ -15,14 +15,14 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@color/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay" >
 
             <TextView
                 android:gravity="center|left"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Hard Of Borneo"
+                android:text="Heard Of Borneo"
                 android:textSize="18sp"
                 android:textColor="#FFF"/>
 

@@ -55,6 +55,7 @@
                         android:textColor="#FFF"
                         android:textColorHint="#FFF"
                         android:textSize="16sp"
+                        android:text="rifanwinprof@gmail.com"
                         android:fontFamily="sans-serif"/>
 
                 </LinearLayout>
@@ -84,6 +85,7 @@
                         android:textColor="#FFF"
                         android:textColorHint="#FFF"
                         android:textSize="16sp"
+                        android:text="123456"
                         android:fontFamily="sans-serif" />
 
                 </LinearLayout>

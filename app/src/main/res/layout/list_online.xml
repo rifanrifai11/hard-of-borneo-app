@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="3dp">
+
+    <LinearLayout
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_background_white_very_low"
+        android:gravity="center"
+        android:elevation="3dp">
+
+        <LinearLayout
+            android:layout_margin="8dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:padding="5dp"
+                android:scaleType="centerCrop"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/profil"
+                android:id="@+id/circleView" />
+
+            <LinearLayout
+                android:layout_marginLeft="4dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:textColor="#1a1a1a"
+                    android:text="Kusniadi Jaya Akbar"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="9sp"
+                    android:text="Samarinda"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_marginRight="4dp"
+                android:layout_gravity="right"
+                android:gravity="center|right"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Online"
+                android:textColor="#04d600"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

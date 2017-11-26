@@ -292,7 +292,8 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    app:srcCompat="@drawable/ms_maps" />
+                    app:srcCompat="@drawable/ms_maps"
+                    tools:ignore="VectorDrawableCompat" />
 
                 <LinearLayout
                     android:orientation="vertical"
@@ -318,12 +319,13 @@
                             android:layout_width="22dp"
                             android:layout_height="22dp"
                             app:srcCompat="@drawable/ms_arrow_down"
-                            android:layout_marginRight="8dp"/>
+                            android:layout_marginRight="8dp"
+                            tools:ignore="VectorDrawableCompat" />
 
                     </LinearLayout>
 
                     <EditText
-                        android:id="@+id/eKontak"
+                        android:id="@+id/eKontakk"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
@@ -354,7 +356,8 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    app:srcCompat="@drawable/ms_birthdat" />
+                    app:srcCompat="@drawable/ms_birthdat"
+                    tools:ignore="VectorDrawableCompat" />
 
                 <LinearLayout
                     android:orientation="vertical"
@@ -380,7 +383,8 @@
                             android:layout_width="22dp"
                             android:layout_height="22dp"
                             app:srcCompat="@drawable/ms_arrow_down"
-                            android:layout_marginRight="8dp"/>
+                            android:layout_marginRight="8dp"
+                            tools:ignore="VectorDrawableCompat" />
 
                     </LinearLayout>
 
@@ -405,6 +409,17 @@
                 </LinearLayout>
 
             </LinearLayout>
+
+            <Button
+                android:id="@+id/btnSignUp"
+                android:layout_marginTop="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/button_background_blue_light_very_low"
+                android:text="Update Profile"
+                android:textColor="#FFFFFF"
+                android:textAllCaps="false"
+                android:textSize="16sp"/>
 
         </LinearLayout>
 

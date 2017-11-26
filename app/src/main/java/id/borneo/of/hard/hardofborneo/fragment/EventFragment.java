@@ -66,12 +66,10 @@ public class EventFragment extends Fragment {
 
         List<EventItem> allItems = new ArrayList<>();
         allItems.add(new EventItem("Persiapan Ajang Event Dota",getString(R.string.desc), R.drawable.dummy_image));
-        allItems.add(new EventItem("Persiapan Ajang Event Dota",getString(R.string.desc), R.drawable.dummy_image));
-        allItems.add(new EventItem("Persiapan Ajang Event Dota",getString(R.string.desc), R.drawable.dummy_image));
-        allItems.add(new EventItem("Persiapan Ajang Event Dota",getString(R.string.desc), R.drawable.dummy_image));
-        allItems.add(new EventItem("Persiapan Ajang Event Dota",getString(R.string.desc), R.drawable.dummy_image));
-        allItems.add(new EventItem("Persiapan Ajang Event Dota",getString(R.string.desc), R.drawable.dummy_image));
-        allItems.add(new EventItem("Persiapan Ajang Event Dota",getString(R.string.desc), R.drawable.dummy_image));
+        allItems.add(new EventItem("Acara Hackathon 2018 Telkomsel",getString(R.string.one), R.drawable.dummy_image));
+        allItems.add(new EventItem("Event Samarinda bersih bersih",getString(R.string.two), R.drawable.dummy_image));
+        allItems.add(new EventItem("Born to protech",getString(R.string.tree), R.drawable.dummy_image));
+        allItems.add(new EventItem("Festival kuliner samarinda",getString(R.string.fore), R.drawable.dummy_image));
 
         return allItems;
     }

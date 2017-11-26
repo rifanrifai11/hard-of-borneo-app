@@ -150,7 +150,8 @@ public class Register extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         int i = v.getId();
         if (i == R.id.btnSignUp) {
-            createAccount(mEmail.getText().toString(), mPassword.getText().toString());
+            Intent in = new Intent(Register.this, Dashboard.class);
+            startActivity(in);
         }
 //        else if (i == R.id.email_sign_in_button) {
 //            signIn(mEmail.getText().toString(), mPassword.getText().toString());
