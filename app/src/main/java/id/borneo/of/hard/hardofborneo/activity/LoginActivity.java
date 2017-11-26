@@ -5,7 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -22,6 +24,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import id.borneo.of.hard.hardofborneo.utility.BaseActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,7 +46,7 @@ import id.borneo.of.hard.hardofborneo.session.Controller;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity implements View.OnClickListener {
 
     // UI references.
     private EditText mEmail;
@@ -49,24 +57,25 @@ public class LoginActivity extends AppCompatActivity {
     private ProgressDialog pDialog;
     private SessionManage session;
     private SQLiteHandler db;
-    private Button mEmailSignIn;
+    private Button mEmailSignIn,verifyButtom;
     private boolean loggedIn = false;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         // Set up the login form
-
         initAction();
-
+        mAuth = FirebaseAuth.getInstance();
     }
 
     private void initAction() {
         mEmail = (EditText) findViewById(R.id.email);
         mPassword = (EditText) findViewById(R.id.password);
-        btnRegister = (TextView) findViewById(R.id.btnRegister);
-        mEmailSignIn = (Button) findViewById(R.id.email_sign_in_button);
+        btnRegister = (TextView) findViewById(R.id.btnRegisterr);
+        findViewById(R.id.email_sign_in_button).setOnClickListener(this);
+
 
         btnRegister.setOnClickListener(new OnClickListener() {
             @Override
@@ -76,109 +85,172 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-//        pDialog = new ProgressDialog(this);
-//        pDialog.setCancelable(false);
-//        db = new SQLiteHandler(getApplicationContext());
-//        session = new SessionManage(getApplicationContext());
-//
-//        if (session.isLoggedIn()) {
-//            Intent intent = new Intent(LoginActivity.this, Dashboard.class);
-//            startActivity(intent);
-//            finish();
-//        }
-
-        mEmailSignIn.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                String email = mEmail.getText().toString().trim();
-//                String password = mPassword.getText().toString().trim();
-//
-//                if(!email.isEmpty() && !password.isEmpty() ) {
-//                    checkLogin(email,password);
-//                } else {
-//                    Toast.makeText(getApplicationContext(),"Email & Password Empty", Toast.LENGTH_SHORT).show();
-//                }
-                Intent intent = new Intent(LoginActivity.this, Dashboard.class);
-                startActivity(intent);
-                //sessionLogin();
-            }
-        });
-
     }
 
+    // [START on_start_check_user]
     @Override
-    protected void onResume () {
-        super.onResume();
-        SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME,Context.MODE_PRIVATE);
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        //updateUI(currentUser);
+    }
+    // [END on_start_check_user]
 
-        //Fetching the boolean value form sharedpreferences
-        loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, false);
+    private void createAccount(String email, String password) {
+        Log.d(TAG, "createAccount:" + email);
+        if (!validateForm()) {
+            return;
+        }
 
-        //If we will get true
-        if(loggedIn){
-            //We will start the Profiles Activity
-            Intent intent = new Intent(LoginActivity.this, Dashboard.class);
+        showProgressDialog();
+
+        // [START create_user_with_email]
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "createUserWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI(user);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                            updateUI(null);
+                        }
+
+                        // [START_EXCLUDE]
+                        hideProgressDialog();
+                        // [END_EXCLUDE]
+                    }
+                });
+        // [END create_user_with_email]
+    }
+
+    private void signIn(String email, String password) {
+        Log.d(TAG, "signIn:" + email);
+        if (!validateForm()) {
+            return;
+        }
+
+        showProgressDialog();
+
+        // [START sign_in_with_email]
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI(user);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                            updateUI(null);
+                        }
+
+                        // [START_EXCLUDE]
+                        if (!task.isSuccessful()) {
+                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                        hideProgressDialog();
+                        // [END_EXCLUDE]
+                    }
+                });
+        // [END sign_in_with_email]
+    }
+
+    private void signOut() {
+        mAuth.signOut();
+        //updateUI(null);
+    }
+
+    private void sendEmailVerification() {
+        // Disable button
+//        verifyButtom = (Button) findViewById(R.id.ver)
+        //findViewById(R.id.verify_email).setEnabled(false);
+
+        // Send verification email
+        // [START send_email_verification]
+        final FirebaseUser user = mAuth.getCurrentUser();
+        user.sendEmailVerification()
+                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        // [START_EXCLUDE]
+                        // Re-enable button
+                        //findViewById(R.id.verify_email).setEnabled(true);
+
+                        if (task.isSuccessful()) {
+                            Toast.makeText(LoginActivity.this,
+                                    "Verification email sent to " + user.getEmail(),
+                                    Toast.LENGTH_SHORT).show();
+                        } else {
+                            Log.e(TAG, "sendEmailVerification", task.getException());
+                            Toast.makeText(LoginActivity.this,
+                                    "Failed to send verification email.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                        // [END_EXCLUDE]
+                    }
+                });
+        // [END send_email_verification]
+    }
+
+    private boolean validateForm() {
+        boolean valid = true;
+
+        String email = mEmail.getText().toString();
+        if (TextUtils.isEmpty(email)) {
+            mEmail.setError("Required.");
+            valid = false;
+        } else {
+            mEmail.setError(null);
+        }
+
+        String password = mPassword.getText().toString();
+        if (TextUtils.isEmpty(password)) {
+            mPassword.setError("Required.");
+            valid = false;
+        } else {
+            mPassword.setError(null);
+        }
+
+        return valid;
+    }
+
+    private void updateUI(FirebaseUser user) {
+        hideProgressDialog();
+        if (user != null) {
+            Intent intent = new Intent(LoginActivity.this,Dashboard.class);
             startActivity(intent);
+
+        } else {
+            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                    Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void sessionLogin() {
-        final String email = mEmail.getText().toString().trim();
-        final String password = mPassword.getText().toString().trim();
-
-        //Creating a string request
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, Config.URL_LOGIN,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        //If we are getting success from server
-                        if(response.equalsIgnoreCase(Config.LOGIN_SUCCESS)){
-                            //Creating a shared preference
-                            SharedPreferences sharedPreferences = LoginActivity.this.getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
-
-                            //Creating editor to store values to shared preferences
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                            //Adding values to editor
-                            editor.putBoolean(Config.LOGGEDIN_SHARED_PREF, true);
-                            editor.putString(Config.EMAIL_SHARED_PREF, email);
-
-                            //Saving values to editor
-                            editor.commit();
-
-                            //Starting profile activity
-                            Intent intent = new Intent(LoginActivity.this, Dashboard.class);
-                            startActivity(intent);
-                        }else{
-                            //If the server response is not success
-                            //Displaying an error message on toast
-                            Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_LONG).show();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        //You can handle error here if you want
-                    }
-                }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> params = new HashMap<>();
-                //Adding parameters to request
-                params.put(Config.KEY_EMAIL, email);
-                params.put(Config.KEY_PASSWORD,password);
-
-                //returning parameter
-                return params;
-            }
-        };
-
-        //Adding the string request to the queue
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
+    @Override
+    public void onClick(View v) {
+        int i = v.getId();
+        if (i == R.id.email_sign_in_button) {
+            signIn(mEmail.getText().toString(), mPassword.getText().toString());
+        }
+//        else if (i == R.id.sign_out_button) {
+//            signOut();
+//        } else if (i == R.id.verify_email_button) {
+//            sendEmailVerification();
+//        }
     }
-
-//
 }
 

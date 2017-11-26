@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1000778676900",
+    "firebase_url": "https://hard-of-borneo-app.firebaseio.com",
+    "project_id": "hard-of-borneo-app",
+    "storage_bucket": "hard-of-borneo-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1000778676900:android:7aad6e72edeafe02",
+        "android_client_info": {
+          "package_name": "id.borneo.of.hard.hardofborneo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1000778676900-a5aq1cvcqauj6jfspss76up8q6pm18gq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.borneo.of.hard.hardofborneo",
+            "certificate_hash": "45b709ddfe5aba8238e740893293aa534ef9cfbd"
+          }
+        },
+        {
+          "client_id": "1000778676900-kk56o7kd376des2tln70ueu78mp1ahgt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqBeV-U1_EL0uiLnRfy808U5jhDc_DgoE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1000778676900-kk56o7kd376des2tln70ueu78mp1ahgt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
